@@ -1,5 +1,5 @@
 const Employee = require(".././models/employees")
-const cloudinary = require("../../cloudinary/upload");
+const cloudinary = require("../cloudinary/upload");
 // create a new employee
 exports.createEmployee = async(req,res)=>{
     try {

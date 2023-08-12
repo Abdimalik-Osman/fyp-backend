@@ -17,7 +17,7 @@ const path = require("path");
 const multer = require("multer");
 const cron = require("node-cron");
 const Image = require("../models/images");
-const cloudinary = require("../../cloudinary/upload");
+const cloudinary = require("../cloudinary/upload");
 // Set up multer storage for file uploads
 const mime = require("mime");
 const axios = require("axios");
