@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-let autoIncrement = require("mongoose-auto-increment");
+// let autoIncrement = require("mongoose-auto-increment");
 let availableTimeSchema = new Schema(
   {
     districtId:{type:Schema.Types.ObjectId,ref:"districts", default:null},

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-let autoIncrement = require("mongoose-auto-increment");
+// let autoIncrement = require("mongoose-auto-increment");
 let applicantSchema = new Schema(
   {
     fullname:{type:String, default:null},
