@@ -1616,7 +1616,7 @@ exports.getApplicantCreatedThisMonth = async(req,res)=>{
     {
       $match:{
         createdAt: { $gte: startOfMonth, $lte: endOfMonth },
-        districtId: userInfo?.districtId
+        // districtId: userInfo?.districtId
       }
     },
       {
@@ -1637,18 +1637,25 @@ exports.getApplicantCreatedThisMonth = async(req,res)=>{
       {
         $group: {
           _id: "$_id", 
-          fullname: {$first: "$fullname"},
-          motherName: {$first: "$motherName"},
-          POB: {$first: "$POB"}, 
-          DOB: {$first: "$DOB"},
-          createdAt: {$first: "$createdAt"},
-          appointmentDate: {$first: "$appointmentDate"},
-          appointmentTime: {$first: "$appointmentTime"},
-          isApproved: {$first: "$isApproved"},
-          ratio: {$first: "$ratio"},
-          occupation: {$first: "$occupation"},
-          phoneNumber: {$first: "$phoneNumber"},
-          districtName: {$first: "$districtInfo.districtInfo.districtName"}
+         lastCard:{$first:"$$ROOT"} 
+        }
+      },
+      {
+        $project:{
+          _id: 1,
+          // lastCard:{$first:"$ROOT"},
+          fullname: "$lastCard.fullname",
+          motherName: "$lastCard.motherName",
+          POB: "$lastCard.POB", 
+          DOB: "$lastCard.DOB",
+          createdAt: "$lastCard.createdAt",
+          appointmentDate: "$lastCard.appointmentDate",
+          appointmentTime: "$lastCard.appointmentTime",
+          isApproved: "$lastCard.isApproved",
+          ratio: "$lastCard.ratio",
+          occupation: "$lastCard.occupation",
+          phoneNumber: "$lastCard.phoneNumber",
+          districtName: "$lastCard.districtInfo.districtInfo.districtName"
         }
       },
       {
@@ -1683,18 +1690,24 @@ exports.getApplicantCreatedThisMonth = async(req,res)=>{
           {
             $group: {
               _id: "$_id", 
-              fullname: {$first: "$fullname"},
-              motherName: {$first: "$motherName"},
-              POB: {$first: "$POB"}, 
-              DOB: {$first: "$DOB"},
-              createdAt: {$first: "$createdAt"},
-              appointmentDate: {$first: "$appointmentDate"},
-              appointmentTime: {$first: "$appointmentTime"},
-              isApproved: {$first: "$isApproved"},
-              ratio: {$first: "$ratio"},
-              occupation: {$first: "$occupation"},
-              phoneNumber: {$first: "$phoneNumber"},
-              districtName: {$first: "$districtInfo.districtInfo.districtName"}
+             
+            }
+          },{
+            $project:{
+              _id: 1,
+              // lastCard:{$first:"$ROOT"},
+              fullname: "$lastCard.fullname",
+              motherName: "$lastCard.motherName",
+              POB: "$lastCard.POB", 
+              DOB: "$lastCard.DOB",
+              createdAt: "$lastCard.createdAt",
+              appointmentDate: "$lastCard.appointmentDate",
+              appointmentTime: "$lastCard.appointmentTime",
+              isApproved: "$lastCard.isApproved",
+              ratio: "$lastCard.ratio",
+              occupation: "$lastCard.occupation",
+              phoneNumber: "$lastCard.phoneNumber",
+              districtName: "$lastCard.districtInfo.districtInfo.districtName"
             }
           },
           {
